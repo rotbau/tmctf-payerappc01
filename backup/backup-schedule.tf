@@ -2,13 +2,13 @@ resource "tanzu-mission-control_backup_schedule" "sample-full" {
   name = "full-weekly"
   scope {
     cluster {
-      management_cluster_name = "MGMT_CLS_NAME"
-      provisioner_name        = "PROVISIONER_NAME"
-      cluster_name            = "CLS_NAME"
+      management_cluster_name = var.management_cluster_name
+      provisioner_name        = var.provisioner_name
+      cluster_name            = var.cluster_name
     }
   }
 
-  backup_scope = "FULL_CLUSTER"
+  backup_scope = var.backup_scope
 
   spec {
     schedule {
@@ -20,7 +20,7 @@ resource "tanzu-mission-control_backup_schedule" "sample-full" {
       excluded_namespaces= []
       excluded_resources = []
 
-      storage_location = "TARGET_LOCATION_NAME"
+      storage_location = var.storage_location
     }
   }
 }
